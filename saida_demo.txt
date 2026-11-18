@@ -1,0 +1,30 @@
+=== 1. Cadastro (a senha nunca é gravada em texto puro) ===
+cadastrar('maria', senha forte)      -> (True, 'Cadastro realizado.')
+cadastrar('joao', '12345678')        -> (False, 'Essa senha é muito comum ou já apareceu em vazamentos. Escolha outra.')
+cadastrar('ana', 'abc')              -> (False, 'A senha precisa ter pelo menos 8 caracteres.')
+cadastrar('Maria', senha forte)      -> (False, 'Não foi possível concluir o cadastro com esses dados.') (duplicado)
+
+=== 2. O que fica no banco de dados ===
+(1, 'maria', '$argon2id$v=19$m=47104,t=2,p=1$TDvjbgEl8Nu5lZ5G+9XDiQ$4miGmxr0VhqwAt44143FzsmfBNUmxjkGQHCzVIImb0E')
+Formato: $argon2id$v=19$m=<memória KiB>,t=<iterações>,p=<paralelismo>$<salt>$<hash>
+
+=== 3. Mesma senha, hashes diferentes (salt aleatório) ===
+$argon2id$v=19$m=47104,t=2,p=1$Gl2+F0iyJJqoT11YsuNNvg$ZVnj6CWEbxk3wsE3rGgltVe8x2dgQinNRqlpFFNOwHk
+$argon2id$v=19$m=47104,t=2,p=1$pF0NC1QZyvbaCbU+v3UbiQ$ZlhRlklCCr15R9SvFQGrxgCElWnnx8/X9NG5+1qKgjY
+
+=== 4. Login ===
+senha correta           -> (True, 'Login realizado.')
+senha incorreta         -> (False, 'Usuário ou senha inválidos.')
+usuário inexistente     -> (False, 'Usuário ou senha inválidos.')
+injeção SQL no usuário  -> (False, 'Usuário ou senha inválidos.')
+
+=== 5. Bloqueio após 5 falhas ===
+senha CORRETA durante bloqueio -> (False, 'Muitas tentativas. Aguarde e tente novamente.')
+senha correta após 60 s        -> (True, 'Login realizado.')
+
+=== 6. Por que SHA-256 isolado NÃO serve para senhas ===
+SHA-256 (1ª vez): 0f4f99bc75a15e7ac7afde7deb2d078d7232d8312e1c481de5093dbbd63dea72
+SHA-256 (2ª vez): 0f4f99bc75a15e7ac7afde7deb2d078d7232d8312e1c481de5093dbbd63dea72 <- idêntico: sem salt
+SHA-256: 200,000 tentativas em 0.09 s  (~2,235,520 por segundo)
+Argon2id: 1 tentativa em 73 ms  (~14 por segundo)
+Atacante testa ~163,812x mais senhas por segundo no SHA-256.

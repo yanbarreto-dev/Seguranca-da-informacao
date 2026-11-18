@@ -1,0 +1,30 @@
+test_formato_phc_e_parametros (test_auth.TestHash.test_formato_phc_e_parametros) ... ok
+test_hash_adulterado_ou_malformado_e_rejeitado (test_auth.TestHash.test_hash_adulterado_ou_malformado_e_rejeitado) ... ok
+test_rehash_quando_parametros_antigos (test_auth.TestHash.test_rehash_quando_parametros_antigos) ... ok
+test_salt_unico_mesmo_hash_diferente (test_auth.TestHash.test_salt_unico_mesmo_hash_diferente) ... ok
+test_sha256_isolado_e_deterministico_e_sem_salt (test_auth.TestHash.test_sha256_isolado_e_deterministico_e_sem_salt) ... ok
+test_unicode_normalizado (test_auth.TestHash.test_unicode_normalizado) ... ok
+test_verificacao_correta_e_incorreta (test_auth.TestHash.test_verificacao_correta_e_incorreta) ... ok
+test_curta (test_auth.TestPolitica.test_curta) ... ok
+test_igual_ao_usuario (test_auth.TestPolitica.test_igual_ao_usuario) ... ok
+test_longa_demais (test_auth.TestPolitica.test_longa_demais) ... ok
+test_sem_regra_de_composicao (test_auth.TestPolitica.test_sem_regra_de_composicao) ... ok
+test_vazada (test_auth.TestPolitica.test_vazada) ... ok
+test_bloqueio_apos_falhas_e_liberacao (test_auth.TestServico.test_bloqueio_apos_falhas_e_liberacao) ... ok
+test_cadastro_nao_guarda_senha_em_texto_puro (test_auth.TestServico.test_cadastro_nao_guarda_senha_em_texto_puro) ... ok
+test_injecao_sql_tratada_como_texto (test_auth.TestServico.test_injecao_sql_tratada_como_texto) ... ok
+test_login_correto (test_auth.TestServico.test_login_correto) ... ok
+test_login_senha_errada (test_auth.TestServico.test_login_senha_errada) ... ok
+test_mensagem_generica_usuario_inexistente_igual_senha_errada (test_auth.TestServico.test_mensagem_generica_usuario_inexistente_igual_senha_errada) ... ok
+test_parametro_adulterado_invalida_hash (test_auth.TestServico.test_parametro_adulterado_invalida_hash) ... ok
+test_rehash_transparente_no_login (test_auth.TestServico.test_rehash_transparente_no_login) ... ok
+test_usuario_duplicado (test_auth.TestServico.test_usuario_duplicado) ... ok
+test_cabecalhos_de_seguranca (test_web.TestWeb.test_cabecalhos_de_seguranca) ... ok
+test_fluxo_cadastro_login_logout (test_web.TestWeb.test_fluxo_cadastro_login_logout) ... ok
+test_login_invalido_mensagem_generica (test_web.TestWeb.test_login_invalido_mensagem_generica) ... ok
+test_post_sem_csrf_e_rejeitado (test_web.TestWeb.test_post_sem_csrf_e_rejeitado) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.845s
+
+OK
